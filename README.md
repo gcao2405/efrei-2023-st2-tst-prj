@@ -101,14 +101,9 @@ Find as many bugs as possible.
 1. Start to automate tests from the last sequence, but *take your time*, I
    want to see **maintainable test code**.
 
-## Sequence 4 - using the backend code
+## Sequence 4 - integration tests
 
-1. Follow the instructions in backend/README.md to setup and run the Python backend
-1. Choose a library in the same language you used for playwright to make http requests
-1. Choose a library in the same language you used for playwright to query the sqlite db
-1. Write some tests by making HTTP requests directly and querying the db
-1. Consider what it would take to use white-box testing
-1. Can you think of other ideas to reduce the number of bugs in this application?
+1. Choose a language and add missing integration tests
 
 ## Finale
 

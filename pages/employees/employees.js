@@ -13,6 +13,10 @@ exports.EmployeesPage = class EmployeesPage {
     this.addToTeamLink = page.getByRole('link', { name: 'Add to team' });
     this.teamSelect = page.getByRole('combobox', { name: 'Team' });
     this.addButton = page.getByRole('button', { name: 'Add' });
+    this.updateBasicInfoLink = page.getByRole('link', { name: 'Update basic info' });
+    this.nameField = page.getByPlaceholder('Name');
+    this.emailField = page.getByPlaceholder('Email');
+    this.updateButton = page.getByRole('button', { name: 'Update' });
   }
 
   async goto() {
@@ -24,5 +28,13 @@ exports.EmployeesPage = class EmployeesPage {
     await this.addToTeamLink.click();
     await this.teamSelect.selectOption(teamOption);
     await this.addButton.click();
+  }
+
+  async updateBasicInfo(newName, newEmail) {
+    await this.editLink.click();
+    await this.updateBasicInfoLink.click();
+    await this.nameField.fill(newName);
+    await this.emailField.fill(newEmail);
+    await this.updateButton.click();
   }
 }

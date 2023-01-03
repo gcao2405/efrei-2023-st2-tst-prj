@@ -1,4 +1,4 @@
-# ST2 Software Testing Project for EFREI (2022/2023 edition)
+# ST2 Software Testing Project for EFREI (2022/2023 edition) - Group G
 
 ## Introduction
 

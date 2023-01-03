@@ -1,5 +1,6 @@
 // playwright-dev-page.js
 const { expect } = require('@playwright/test');
+const { User } = require('../../models/user');
 
 exports.AddEmployeePage = class AddEmployeePage {
 
@@ -26,7 +27,16 @@ exports.AddEmployeePage = class AddEmployeePage {
   /**
    * @param {import('../../models/user').User} user
    */
-  async addUser(user) {
+  async addUser(user = new User(
+    'Default User',
+    'email@example.com',
+    '1 rue La Tour',
+    'Batiment A',
+    'Paris',
+    '75000',
+    '2023-01-01',
+    'Student',
+  )) {
     await this.nameField.fill(user.name);
     await this.emailField.fill(user.email);
     await this.address1Field.fill(user.address1);

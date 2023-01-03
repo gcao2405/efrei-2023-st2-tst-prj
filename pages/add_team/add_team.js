@@ -17,7 +17,7 @@ exports.AddTeamPage = class AddTeamPage {
     await this.page.goto('https://g.hr.dmerej.info/add_team');
   }
 
-  async createTeam(teamName) {
+  async addTeam(teamName = 'default_team_name') {
     await this.teamNameField.fill(teamName);
     await this.addButton.click();
   }

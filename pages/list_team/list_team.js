@@ -14,6 +14,9 @@ exports.ListTeamPage = class ListTeamPage {
     this.viewMembersHeader = page.locator('h2', { hasText: 'Team Members' });
     this.deleteTeamLink = page.locator('table.table tbody > tr > td > a.btn.btn-danger', { hasText: 'Delete' });
     this.deleteTeamHeader = page.locator('h2', { hasText: 'Delete Team' });
+    this.teamList = page.locator('body > table > tbody > tr > td');
+    this.deleteProceedButton = page.getByRole('button', { name: 'Proceed' });
+    this.memberList = page.getByRole('listitem');
   }
 
   async goto() {
@@ -33,5 +36,6 @@ exports.ListTeamPage = class ListTeamPage {
   async deleteTeam() {
     await this.deleteTeamLink.first().click();
     await expect(this.deleteTeamHeader).toBeVisible();
+    await this.deleteProceedButton.click();
   }
 }

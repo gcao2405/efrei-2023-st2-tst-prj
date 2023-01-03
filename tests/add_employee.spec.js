@@ -26,7 +26,7 @@ test('Add 2 employees sucessfully', async ({ page }) => {
     '75000',
     '2023-01-01',
     'Student',
-  )
+  );
   await addEmployeePage.addUser(user1);
 
   addEmployeePage.goto();
@@ -40,7 +40,7 @@ test('Add 2 employees sucessfully', async ({ page }) => {
     '75000',
     '2023-01-02',
     'Student',
-  )
+  );
   await addEmployeePage.addUser(user2);
 
   await expect(page).toHaveURL(/employees/);

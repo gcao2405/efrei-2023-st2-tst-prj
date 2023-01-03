@@ -31,4 +31,9 @@ exports.HomePage = class HomePage {
   async navigateToResetDatabase() {
     await this.resetDatabaseLink.click();
   }
+
+  async resetDatabase() {
+    await this.navigateToResetDatabase();
+    await this.page.getByRole('button', { name: 'Proceed' }).click();
+  }
 }

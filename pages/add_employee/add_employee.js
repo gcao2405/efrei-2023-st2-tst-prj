@@ -23,15 +23,18 @@ exports.AddEmployeePage = class AddEmployeePage {
     await this.page.goto('https://g.hr.dmerej.info/add_employee');
   }
 
-  async fillFormAndAdd() {
-    await this.nameField.fill('name');
-    await this.emailField.fill('email@example.com');
-    await this.address1Field.fill('1 rue La Tour');
-    await this.address2Field.fill('Batiment A');
-    await this.cityField.fill('Paris');
-    await this.zipCodeField.fill('75000');
-    await this.hiringDateField.fill('2023-01-04');
-    await this.jobTitleField.fill('Student');
+  /**
+   * @param {import('../../models/user').User} user
+   */
+  async addUser(user) {
+    await this.nameField.fill(user.name);
+    await this.emailField.fill(user.email);
+    await this.address1Field.fill(user.address1);
+    await this.address2Field.fill(user.address2);
+    await this.cityField.fill(user.city);
+    await this.zipCodeField.fill(user.zipCode);
+    await this.hiringDateField.fill(user.hiringDate);
+    await this.jobTitleField.fill(user.jobTitle);
     await this.addButton.click();
   }
 }

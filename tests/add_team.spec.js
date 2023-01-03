@@ -1,21 +1,29 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
+const { AddTeamPage } = require('../pages/add_team/add_team');
+const { TeamsPage } = require('../pages/teams/teams');
+const { HomePage } = require('../pages/home');
 
-test('homepage has title and links to intro page', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.beforeEach(async ({ page }, testInfo) => {
+  const homePage = new HomePage(page);
+  await homePage.goto();
+  await homePage.resetDatabase();
+});
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+test('Add 2 teams successfully', async ({ page }) => {
+  const addTeamPage = new AddTeamPage(page);
+  await addTeamPage.goto();
 
-  // create a locator
-  const getStarted = page.getByRole('link', { name: 'Get started' });
+  await expect(page).toHaveTitle(/Add Team/);
 
-  // Expect an attribute "to be strictly equal" to the value.
-  await expect(getStarted).toHaveAttribute('href', '/docs/intro');
+  await addTeamPage.createTeam('team1');
+  await addTeamPage.goto();
+  await addTeamPage.createTeam('team2');
 
-  // Click the get started link.
-  await getStarted.click();
-  
-  // Expects the URL to contain intro.
-  await expect(page).toHaveURL(/.*intro/);
+  await expect(page).toHaveURL(/teams/);
+  const teamsPage = new TeamsPage(page);
+  await expect(teamsPage.teamList).toContainText([
+    'team1',
+    'team2',
+  ])
 });
